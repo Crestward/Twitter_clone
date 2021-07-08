@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} {{post.author.username}} {% endblock %}
+
+{% load thumbnail %}
+
+{% block body %}
+
+{% include "includes/post.html" with post=post %}
+
+{% endblock %}
