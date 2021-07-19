@@ -4,7 +4,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from .models import Post
 from followers.models import Follower
-from .forms import RegisterForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import FormView
 from django.shortcuts import redirect
@@ -70,6 +69,12 @@ class CreateNewPost(LoginRequiredMixin, CreateView):
             content_type = "application/html"
         )
 
+#class SignUp(CustomSignupForm):
+ #   template_name = "account/signup.html"
+
+
+
+'''
 class RegisterFormView(FormView):
     template_name = 'signup.html' 
  
@@ -86,3 +91,4 @@ class RegisterFormView(FormView):
             # Invalid form! Reshow the form with error highlighted 
             return render(request, self.template_name, 
                           {'form': form}) 
+                          '''

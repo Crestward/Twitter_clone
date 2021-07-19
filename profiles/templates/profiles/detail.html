@@ -15,7 +15,19 @@
   </div>
   <div class="text-center px-3 pb-6 pt-2">
       <h3 class="text-black text-sm bold font-sans"> {{user.username}} </h3>
-        
+      
+      {% if request.user == user %}
+        {% if request.user.is_authenticated %}
+            <button class="bg-white text-gray-800 font-bold rounded 
+            border-b-2 border-green-500 
+            hover:border-green-600 hover:bg-green-500 
+            hover:text-white shadow-md py-1 px-3 
+            inline-flex items-center text-sm mt-4" type = "button"> 
+            <a href=""> Edit </a>
+                </button> 
+        {% endif %}
+    {% endif %} 
+
         {% if request.user.is_authenticated %}
             {% if request.user != user %}
             <div class="mt-3">

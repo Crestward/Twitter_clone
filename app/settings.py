@@ -161,7 +161,11 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend"
 )
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+ACCOUNT_FORMS = {
+'signup': 'line.forms.CustomSignupForm',
+}
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "frontend")

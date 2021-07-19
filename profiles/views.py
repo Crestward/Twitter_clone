@@ -1,10 +1,18 @@
 from django.http.response import HttpResponseBadRequest
-from django.views.generic import DetailView, View
+from django.views.generic import DetailView, View, ListView
 from django.contrib.auth.models import User
 from line.models import Post
 from followers.models import Follower
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponseBadRequest
+from django.contrib import messages # import messages to show flash message in your page
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserChangeForm
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 class ProfileDetailView(DetailView):
     http_method_names= ['get']
@@ -26,6 +34,7 @@ class ProfileDetailView(DetailView):
         if self.request.user.is_authenticated:
             context['you_follow'] = Follower.objects.filter(following=user, followed_by=self.request.user).exists
         return context
+
 
 class FollowView(LoginRequiredMixin, View):
     http_method_names= ['post']
@@ -64,3 +73,6 @@ class FollowView(LoginRequiredMixin, View):
                 'success': True,
                 'wording': "Unfollow" if data['action'] == "follow" else "Follow"
             })
+
+
+
